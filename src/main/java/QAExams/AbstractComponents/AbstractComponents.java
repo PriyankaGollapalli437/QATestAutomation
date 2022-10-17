@@ -1,0 +1,43 @@
+package QAExams.AbstractComponents;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+public class AbstractComponents {
+
+	
+	
+public WebDriver driver;
+	
+	public AbstractComponents(WebDriver driver) {
+	
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	@FindBy (css= "[routerlink*='cart']")
+	WebElement CartHeader;
+	
+	
+	
+    public void waitForElementToAppear(By FindBy)
+	
+	{
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));	
+	wait.until(ExpectedConditions.visibilityOfElementLocated(FindBy));
+
+     }
+   
+    public void implicitWait()
+    {
+    	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+}
